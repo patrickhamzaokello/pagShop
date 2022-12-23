@@ -15,6 +15,7 @@
     --main-color: #65006e;
     --text-color: #171427;
     --bg-color: #fff;
+    --add-color: #00257b;
 }
 
 img {
@@ -233,11 +234,13 @@ header {
 
 .product-box {
     position: relative;
+    padding: 10px;
+    border: 1px solid #d1daef;
+    background: #f6f9ff;
+
 }
 
 .product-box:hover {
-    padding: 10px;
-    border: 1px solid var(--text-color);
     transition: .4s;
 }
 
@@ -263,9 +266,11 @@ header {
     bottom: 0;
     right: 0;
     color: var(--bg-color);
-    background: var(--text-color);
+    background: var(--add-color);
     padding: 10px;
     cursor: pointer;
+    display: flex !important;
+    align-items: center;
 }
 
 .add-cart:hover {
@@ -309,6 +314,8 @@ header {
     background: var(--text-color);
     padding: 10px;
     cursor: pointer;
+    display: flex !important;;
+    align-items: center;
 }
 
 .cat-view:hover {
@@ -339,6 +346,33 @@ header {
     width: 100%;
 }
 
+#close-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 0.8rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.overlay-active {
+    display: block !important;
+    transition: 0.3s;
+}
+
+#overlayResult {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+    grid-gap: 1.5rem;
+}
+
+
+
+.btn_action{
+    padding: 0 0.2rem;
+    font-size: 1.0rem;
+}
 
 /* break points */
 @media (max-width: 1080px) {

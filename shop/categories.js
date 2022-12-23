@@ -1,10 +1,10 @@
 
 readyCategories();
-
-
 function viewCategory(){
+    // Get the overlay content element
+    var overlayResult = document.getElementById('overlayResult');
     // Get the product ID
-    var productId = 123;
+    var productId = 4;
     // Make the AJAX call
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -13,22 +13,45 @@ function viewCategory(){
             var data = JSON.parse(xhr.responseText);
 
             // Clear the overlay content
-            overlayContent.innerHTML = '';
+            overlayResult.innerHTML = '';
 
             // Iterate through the products and add them to the overlay content
             data.forEach(function(product) {
-                var productElement = document.createElement('div');
-                productElement.innerHTML = '<h3>' + product.name + '</h3>';
-                productElement.innerHTML += '<p>' + product.standard_charge + '</p>';
-                overlayContent.appendChild(productElement);
+                const productBox = document.createElement('div');
+                productBox.setAttribute('class', 'product-box');
+                const productTitle = document.createElement('h2');
+                productTitle.setAttribute('class', 'product-title');
+                productTitle.textContent = product.name;
+                const productPrice = document.createElement('span');
+                productPrice.setAttribute('class', 'price');
+                productPrice.textContent = product.standard_charge + ' UGX';
+                const addToCartIcon = document.createElement('i');
+                addToCartIcon.setAttribute('class', 'bx bx-shopping-bag add-cart');
+                const cart_action = document.createElement('span');
+                cart_action.setAttribute('class', 'btn_action');
+                cart_action.textContent = 'Add to Cart';
+                addToCartIcon.appendChild(cart_action);
+
+                productBox.appendChild(productTitle);
+                productBox.appendChild(productPrice);
+                productBox.appendChild(addToCartIcon);
+                overlayResult.appendChild(productBox);
+
             });
+
         }
     };
     xhr.open('GET', 'category_charge.php?id=' + productId, true);
     xhr.send();
 
     const overlay = document.getElementById('overlay');
-    overlay.style.display = 'block';
+    overlay.classList.add("overlay-active");
+
+    let closeOverlay = document.querySelector("#close-overlay");
+    //close cart
+    closeOverlay.onclick = () => {
+        overlay.classList.remove("overlay-active");
+    };
 }
 
 function readyCategories() {
@@ -60,7 +83,7 @@ function readyCategories() {
         else {
             for (var i = 0; i < filteredProducts.length; i++) {
                 var product = filteredProducts[i];
-                resultsContainer.innerHTML += `<div class="cat-product-box"> <h2 class="cat-product-title">${product.name}</h2> <span class="cat-description">${product.description}</span> <i class="bx bx-shopping-bag cat-view"></i></div>`;
+                resultsContainer.innerHTML += `<div class="cat-product-box"> <h2 class="cat-product-title">${product.name}</h2> <span class="cat-description">${product.description}</span> <i class="bx bx-expand cat-view"><span class="btn_action">View Details</span>  </i></div>`;
             }
             // Get the button and the overlay element
             var cat_view_btn = document.getElementsByClassName('cat-view');
