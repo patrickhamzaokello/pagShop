@@ -4,7 +4,7 @@ function viewCategory(){
     // Get the overlay content element
     var overlayResult = document.getElementById('overlayResult');
     // Get the product ID
-    var productId = 4;
+    var productId = 958;
     // Make the AJAX call
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -30,7 +30,7 @@ function viewCategory(){
                 const cart_action = document.createElement('span');
                 cart_action.setAttribute('class', 'btn_action');
                 cart_action.textContent = 'Add to Cart';
-                addToCartIcon.appendChild(cart_action);
+                // addToCartIcon.appendChild(cart_action);
 
                 productBox.appendChild(productTitle);
                 productBox.appendChild(productPrice);

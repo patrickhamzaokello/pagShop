@@ -70,13 +70,12 @@ function addCartClicked(event) {
   var shopProducts = button.parentElement;
   var title = shopProducts.getElementsByClassName("product-title")[0].innerText;
   var price = shopProducts.getElementsByClassName("price")[0].innerText;
-  var productImg = shopProducts.getElementsByClassName("product-img")[0].src;
 
-  addProductToCart(title, price, productImg);
+  addProductToCart(title, price);
   updatetotal();
 }
 
-function addProductToCart(title, price, productImg) {
+function addProductToCart(title, price) {
   var cartShopBox = document.createElement("div");
   cartShopBox.classList.add("cart-box");
   var cartItems = document.getElementsByClassName("cart-content")[0];
@@ -89,10 +88,7 @@ function addProductToCart(title, price, productImg) {
   }
 
 
-  const img = document.createElement('img');
-  img.setAttribute('src', productImg);
-  img.setAttribute('alt', '');
-  img.setAttribute('class', 'cart-img');
+
   
   const detailBox = document.createElement('div');
   detailBox.setAttribute('class', 'detail-box');
@@ -117,7 +113,6 @@ function addProductToCart(title, price, productImg) {
   detailBox.appendChild(priceDiv);
   detailBox.appendChild(quantityInput);
 
-  cartShopBox.appendChild(img);
   cartShopBox.appendChild(detailBox);
   cartShopBox.appendChild(trashIcon);
   cartItems.append(cartShopBox);
@@ -138,7 +133,7 @@ function updatetotal() {
     var cartBox = cartBoxes[i];
     var priceElement = cartBox.getElementsByClassName("cart-price")[0];
     var quantityElement = cartBox.getElementsByClassName("cart-quantity")[0];
-    var price = parseFloat(priceElement.innerText.replace("$", ""));
+    var price = parseFloat(priceElement.innerText.replace("UGX", ""));
     var quantity = quantityElement.value;
     total = total + price * quantity;
 }
@@ -146,5 +141,5 @@ function updatetotal() {
     // if price contains some cents value
     total = Math.round(total * 100) / 100;
 
-    document.getElementsByClassName("total-price")[0].innerText = "$" + total;
+    document.getElementsByClassName("total-price")[0].innerText = "UGX" + total;
 }
