@@ -66,7 +66,8 @@ require_once "load_categories.php"
     </div>
 </section>
 
-<script src="main.js"></script>
 <script src="categories.js"></script>
+<script src="main.js"></script>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 $conn = mysqli_connect('localhost', 'root', '', 'rgxszumy_hospital_pagmh');
 
 // Define the query as a prepared statement with placeholders
-$query = "SELECT id,name,charge_type_id,description FROM charge_categories limit 40";
+$query = "SELECT id,name,charge_type_id,description FROM charge_categories";
 
 // Prepare the statement
 $stmt = mysqli_prepare($conn, $query);

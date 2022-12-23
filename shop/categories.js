@@ -39,6 +39,8 @@ function viewCategory(){
 
             });
 
+            ready();
+
         }
     };
     xhr.open('GET', 'category_charge.php?id=' + productId, true);
