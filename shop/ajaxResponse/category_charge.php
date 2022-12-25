@@ -6,7 +6,7 @@ include_once "config.php";
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Build the SQL query
-$sql = 'SELECT * FROM chargess';
+$sql = 'SELECT * FROM charges';
 if ($id) {
     $sql .= ' WHERE charge_category_id = ' . $id;
 }
