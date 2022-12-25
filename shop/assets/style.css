@@ -129,10 +129,14 @@ header {
 
 .cart-box {
     display: grid;
-    grid-template-columns: 32% 50% 18%;
+    grid-template-columns: 80% 20%;
     align-items: center;
     grid-gap: 1rem;
     margin-top: 1rem;
+}
+
+.cat_type_id{
+    display: none;
 }
 
 .cart-img {

@@ -117,7 +117,7 @@ function searchParentCategory(){
                 const cart_action = document.createElement('span');
                 cart_action.setAttribute('class', 'btn_action');
                 cart_action.textContent = 'View';
-                addToCartIcon.appendChild(cart_action);
+                // addToCartIcon.appendChild(cart_action);
 
                 productBox.appendChild(cat_ID);
                 productBox.appendChild(productTitle);
@@ -157,6 +157,7 @@ function viewCategory(event){
             // Parse the JSON data
             var data = JSON.parse(xhr.responseText);
 
+            card_heading.innerHTML = "";
 
             const mainBox = document.createElement('div');
             mainBox.setAttribute('class', 'main-box');
