@@ -1,7 +1,3 @@
-<?php
-require_once "load_categories.php"
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +5,7 @@ require_once "load_categories.php"
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Hospital System</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="assets/style.css"/>
     <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
@@ -46,7 +42,7 @@ require_once "load_categories.php"
 
     <div class="searchbox">
         <div class="search-box">
-            <form class="search-form">
+            <form id="searchForm" class="search-form">
                 <input id="searchTerm" type="text" placeholder="Search...">
                 <input type="submit" value="Go">
             </form>
@@ -66,8 +62,9 @@ require_once "load_categories.php"
     </div>
 </section>
 
-<script src="categories.js"></script>
-<script src="main.js"></script>
+<script src="assets/categories.js"></script>
+<script src="assets/main.js"></script>
+<script src="../node_modules/jspdf/dist/jspdf.umd.min.js"></script
 
 </body>
 </html>
