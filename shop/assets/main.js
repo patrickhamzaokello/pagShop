@@ -55,17 +55,41 @@ function buyButtonClicked() {
         const text = selectedOption.text;
 
 
+        // Create an object with the value and text of the selected option
+        const data = {
+            value: value,
+            text: text
+        };
 
-        console.log(`Selected option: ${text} (${value})`);
-        alert('Your order is placed')
-        var cartContent = document.getElementsByClassName('cart-content')[0];
-        while (cartContent.hasChildNodes()) {
-            cartContent.removeChild(cartContent.firstChild)
-        }
 
-        updatetotal();
+        // Make an AJAX request to the PHP script
+        fetch('ajaxResponse/save_user_order.php', {
+            method: 'POST',
+            body: JSON.stringify(data), // Stringify the data object
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.text()) // Get the response as text
+            .then(result => {
+                // Check if the result is a success message
+                if (result === 'Data added to database') {
+                    console.log('Data added successfully');
+                    alert(result+ ' - now print pdf');
+                    var cartContent = document.getElementsByClassName('cart-content')[0];
+                    while (cartContent.hasChildNodes()) {
+                        cartContent.removeChild(cartContent.firstChild)
+                    }
+
+                    updatetotal();
+                } else {
+                    alert('Error: ' + result);
+
+                }
+            }); // Log the result to the console
     } else {
-        console.log('No option selected');
+        alert('No User selected');
+
     }
 
 }

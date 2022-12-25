@@ -1,4 +1,6 @@
 <?php
+$conn ="";
+
 include_once "config.php";
 
 

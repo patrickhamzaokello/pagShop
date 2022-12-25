@@ -4,13 +4,12 @@ $host = 'localhost';
 $user = 'root';
 $password = '';
 $dbname = 'rgxszumy_hospital_pagmh';
-$conn = mysqli_connect($host, $user, $password, $dbname);
 
+$conn = new mysqli($host, $user, $password, $dbname);
 
-// Check if the connection was successful
-if (!$conn) {
-    http_response_code(500);
-    exit;
+// Check for errors
+if ($conn->connect_error) {
+    die('Connection failed: ' . $conn->connect_error);
 }
 
 

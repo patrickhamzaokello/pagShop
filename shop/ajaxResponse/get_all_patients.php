@@ -1,4 +1,5 @@
 <?php
+$conn ="";
 
 // Connect to the MySQL database
 include_once "config.php";
