@@ -129,6 +129,7 @@ function updatetotal() {
   var cartContent = document.getElementsByClassName("cart-content")[0];
   var cartBoxes = cartContent.getElementsByClassName("cart-box");
   var total = 0;
+  var total_items = 0;
   for (var i = 0; i < cartBoxes.length; i++) {
     var cartBox = cartBoxes[i];
     var priceElement = cartBox.getElementsByClassName("cart-price")[0];
@@ -136,10 +137,16 @@ function updatetotal() {
     var price = parseFloat(priceElement.innerText.replace("UGX", ""));
     var quantity = quantityElement.value;
     total = total + price * quantity;
+    total_items = total_items + parseFloat(quantity);
 }
 
     // if price contains some cents value
     total = Math.round(total * 100) / 100;
 
+    total_items = Math.round(total_items * 100) / 100;
+
+
     document.getElementsByClassName("total-price")[0].innerText = "UGX" + total;
+    document.getElementsByClassName("number_count")[0].innerText = total_items;
+    document.getElementsByClassName("cart_no")[0].innerText = " (" +total_items+ ") ";
 }

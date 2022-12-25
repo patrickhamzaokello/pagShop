@@ -102,6 +102,7 @@ header {
 #cart-icon {
     font-size: 1.8rem;
     cursor: pointer;
+    position: relative;
 }
 
 .cart {
@@ -151,6 +152,34 @@ header {
     object-fit: contain;
     padding: 10px;
 }
+
+.circle_count {
+    position: absolute;
+    top: -8px;
+    right: -20px;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: red;
+    transform: scale(calc(27px / (length(text()) + 2)));
+    transform: scale(1 + (length(text()) - 1) * 0.5);
+
+}
+
+
+.number_count {
+    font-size: 10px;
+    line-height: 27px;
+    text-align: center;
+    color: #fff;
+}
+
+.cart-content {
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 
 .detail-box {
     display: grid;
