@@ -152,6 +152,8 @@ function viewCategory(event){
     var overlayResult = document.getElementById('overlayResult');
 
     overlayResult.innerHTML = data_loading;
+    card_heading.innerHTML = "";
+
 
     // Get the product ID
     // Make the AJAX call
@@ -160,8 +162,6 @@ function viewCategory(event){
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Parse the JSON data
             var data = JSON.parse(xhr.responseText);
-
-            card_heading.innerHTML = "";
 
             const mainBox = document.createElement('div');
             mainBox.setAttribute('class', 'main-box');
