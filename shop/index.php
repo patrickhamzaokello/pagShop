@@ -35,6 +35,13 @@
                 <div class="total-price">UGX 0</div>
             </div>
 
+            <form>
+                <label for="mySelect">Choose an patient:</label><br>
+                <select id="mySelect">
+                    <option value="">-- Choose an option --</option>
+                </select>
+            </form>
+
             <button type="button" class="btn-buy">Save & Print</button>
 
             <i class="bx bx-x" id="close-cart"></i>
