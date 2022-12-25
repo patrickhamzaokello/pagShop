@@ -38,7 +38,7 @@ function loadParentCategory(){
                 cat_ID.setAttribute('class', 'cat_type_id');
                 const productTitle = document.createElement('h2');
                 productTitle.setAttribute('class', 'cat-product-title');
-                productTitle.textContent = product.description;
+                productTitle.textContent = product.name;
                 const productPrice = document.createElement('span');
                 productPrice.setAttribute('class', 'cat-description');
                 productPrice.textContent = product.description;
@@ -47,7 +47,7 @@ function loadParentCategory(){
                 const cart_action = document.createElement('span');
                 cart_action.setAttribute('class', 'btn_action');
                 cart_action.textContent = 'View';
-                addToCartIcon.appendChild(cart_action);
+                // addToCartIcon.appendChild(cart_action);
 
                 productBox.appendChild(cat_ID);
                 productBox.appendChild(productTitle);
@@ -76,15 +76,12 @@ function loadParentCategory(){
 
 function searchParentCategory(){
 
-    shop_content.innerHTML = data_loading;
     // Make the AJAX call
     const searchQuery = document.getElementById("searchTerm").value;
 
     // Parse the JSON data
     const data = search_base_data;
-
-    // Clear the overlay content
-    shop_content.innerHTML = '';
+    shop_content.innerHTML = data_loading;
 
     if(searchQuery.length === 0){
         shop_content.innerHTML = looking_for;
@@ -100,6 +97,7 @@ function searchParentCategory(){
             shop_content.innerHTML = data_not_found;
         }
         else {
+            shop_content.innerHTML = "";
             for (var i = 0; i < filteredProducts.length; i++) {
                 var product = filteredProducts[i];
                 const productBox = document.createElement('div');
@@ -125,6 +123,7 @@ function searchParentCategory(){
                 productBox.appendChild(productTitle);
                 productBox.appendChild(productPrice);
                 productBox.appendChild(addToCartIcon);
+
                 shop_content.appendChild(productBox);
             }
             // Get the button and the overlay element
@@ -139,11 +138,18 @@ function searchParentCategory(){
     }
 }
 
-function viewCategory(){
+function viewCategory(event){
+    var cat_button = event.target;
+    var cat_buttonParent = cat_button.parentElement;
+    var productId = cat_buttonParent.getElementsByClassName("cat_type_id")[0].value;
+    var cat_title = cat_buttonParent.getElementsByClassName("cat-product-title")[0].innerHTML;
+    var cat_description = cat_buttonParent.getElementsByClassName("cat-description")[0].innerHTML;
+
+
     // Get the overlay content element
+    var card_heading = document.getElementById('card_heading');
     var overlayResult = document.getElementById('overlayResult');
     // Get the product ID
-    var productId = 958;
     // Make the AJAX call
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -151,32 +157,48 @@ function viewCategory(){
             // Parse the JSON data
             var data = JSON.parse(xhr.responseText);
 
-            // Clear the overlay content
-            overlayResult.innerHTML = '';
 
-            // Iterate through the products and add them to the overlay content
-            data.forEach(function(product) {
-                const productBox = document.createElement('div');
-                productBox.setAttribute('class', 'product-box');
-                const productTitle = document.createElement('h2');
-                productTitle.setAttribute('class', 'product-title');
-                productTitle.textContent = product.name;
-                const productPrice = document.createElement('span');
-                productPrice.setAttribute('class', 'price');
-                productPrice.textContent = product.standard_charge + ' UGX';
-                const addToCartIcon = document.createElement('i');
-                addToCartIcon.setAttribute('class', 'bx bx-shopping-bag add-cart');
-                const cart_action = document.createElement('span');
-                cart_action.setAttribute('class', 'btn_action');
-                cart_action.textContent = 'Add to Cart';
-                // addToCartIcon.appendChild(cart_action);
+            const mainBox = document.createElement('div');
+            mainBox.setAttribute('class', 'main-box');
+            const mainTitle = document.createElement('h2');
+            mainTitle.setAttribute('class', 'main-title');
+            mainTitle.textContent = cat_title;
+            const mainDescription = document.createElement('span');
+            mainDescription.setAttribute('class', 'main-description');
+            mainDescription.textContent = cat_description;
+            mainBox.appendChild(mainTitle);
+            mainBox.appendChild(mainDescription);
+            card_heading.appendChild(mainBox);
 
-                productBox.appendChild(productTitle);
-                productBox.appendChild(productPrice);
-                productBox.appendChild(addToCartIcon);
-                overlayResult.appendChild(productBox);
+            if(data.length === 0){
+                overlayResult.innerHTML = 'No Records Found';
+            } else {
+                overlayResult.innerHTML = '';
+                // Iterate through the products and add them to the overlay content
+                data.forEach(function(product) {
+                    const productBox = document.createElement('div');
+                    productBox.setAttribute('class', 'product-box');
+                    const productTitle = document.createElement('h2');
+                    productTitle.setAttribute('class', 'product-title');
+                    productTitle.textContent = product.name;
+                    const productPrice = document.createElement('span');
+                    productPrice.setAttribute('class', 'price');
+                    productPrice.textContent = product.standard_charge + ' UGX';
+                    const addToCartIcon = document.createElement('i');
+                    addToCartIcon.setAttribute('class', 'bx bx-shopping-bag add-cart');
+                    const cart_action = document.createElement('span');
+                    cart_action.setAttribute('class', 'btn_action');
+                    cart_action.textContent = 'Add to Cart';
+                    // addToCartIcon.appendChild(cart_action);
 
-            });
+                    productBox.appendChild(productTitle);
+                    productBox.appendChild(productPrice);
+                    productBox.appendChild(addToCartIcon);
+                    overlayResult.appendChild(productBox);
+
+                });
+            }
+
 
             ready();
 

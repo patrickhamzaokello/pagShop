@@ -56,7 +56,11 @@
     <div id="overlay">
         <div id="overlayContent">
             <i class="bx bx-x" id="close-overlay"></i>
+            <div id="card_heading">
+
+            </div>
             <div id="overlayResult">
+
             </div>
         </div>
     </div>
