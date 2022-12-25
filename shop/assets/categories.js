@@ -1,24 +1,30 @@
-var categories;
+var search_base_data;
 var shop_content = document.getElementById('results');
+var looking_for = "What are you looking for?";
+var data_loading = "Loading...";
+var data_not_found = "No Result Found";
+
+shop_content.innerHTML = looking_for;
+
+loadParentCategory();
 
 document.getElementById('searchForm').addEventListener('submit', function (event){
     event.preventDefault();
-    loadParentCategory();
+    searchParentCategory();
 });
 
 
 function loadParentCategory(){
 
-    shop_content.innerHTML = "Loading...";
+    shop_content.innerHTML = data_loading;
     // Make the AJAX call
     const data_xhr = new XMLHttpRequest();
-    var searchQuery  = document.getElementById("searchTerm").value;
 
     data_xhr.onreadystatechange = function() {
         if (data_xhr.readyState === 4 && data_xhr.status === 200) {
             // Parse the JSON data
-            var data = JSON.parse(data_xhr.responseText);
-            categories = data;
+            const data = JSON.parse(data_xhr.responseText);
+            search_base_data = data;
 
             // Clear the overlay content
             shop_content.innerHTML = '';
@@ -26,6 +32,82 @@ function loadParentCategory(){
             data.forEach(function(product) {
                 const productBox = document.createElement('div');
                 productBox.setAttribute('class', 'cat-product-box');
+                const cat_ID = document.createElement('input');
+                cat_ID.setAttribute('type', 'number');
+                cat_ID.setAttribute('value', product.id);
+                cat_ID.setAttribute('class', 'cat_type_id');
+                const productTitle = document.createElement('h2');
+                productTitle.setAttribute('class', 'cat-product-title');
+                productTitle.textContent = product.description;
+                const productPrice = document.createElement('span');
+                productPrice.setAttribute('class', 'cat-description');
+                productPrice.textContent = product.description;
+                const addToCartIcon = document.createElement('i');
+                addToCartIcon.setAttribute('class', 'bx bx-expand cat-view');
+                const cart_action = document.createElement('span');
+                cart_action.setAttribute('class', 'btn_action');
+                cart_action.textContent = 'View';
+                addToCartIcon.appendChild(cart_action);
+
+                productBox.appendChild(cat_ID);
+                productBox.appendChild(productTitle);
+                productBox.appendChild(productPrice);
+                productBox.appendChild(addToCartIcon);
+                shop_content.appendChild(productBox);
+
+            });
+
+            // Get the button and the overlay element
+            var cat_view_btn = document.getElementsByClassName('cat-view');
+
+            console.log(cat_view_btn);
+            for (var i = 0; i < cat_view_btn.length; i++) {
+                var button = cat_view_btn[i];
+                button.addEventListener("click", viewCategory);
+            }
+
+            // ready();
+
+        }
+    };
+    data_xhr.open('GET', 'ajaxResponse/all_charges_json.php', true);
+    data_xhr.send();
+}
+
+function searchParentCategory(){
+
+    shop_content.innerHTML = data_loading;
+    // Make the AJAX call
+    const searchQuery = document.getElementById("searchTerm").value;
+
+    // Parse the JSON data
+    const data = search_base_data;
+
+    // Clear the overlay content
+    shop_content.innerHTML = '';
+
+    if(searchQuery.length === 0){
+        shop_content.innerHTML = looking_for;
+    } else {
+        // Filter the list of products based on the search term
+        var filteredProducts = data.filter(function (product) {
+            // return product.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || product.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
+            return product.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1;
+        });
+
+        // If there are no search results, display a message
+        if (filteredProducts.length === 0) {
+            shop_content.innerHTML = data_not_found;
+        }
+        else {
+            for (var i = 0; i < filteredProducts.length; i++) {
+                var product = filteredProducts[i];
+                const productBox = document.createElement('div');
+                productBox.setAttribute('class', 'cat-product-box');
+                const cat_ID = document.createElement('input');
+                cat_ID.setAttribute('type', 'number');
+                cat_ID.setAttribute('value', product.id);
+                cat_ID.setAttribute('class', 'cat_type_id');
                 const productTitle = document.createElement('h2');
                 productTitle.setAttribute('class', 'cat-product-title');
                 productTitle.textContent = product.name;
@@ -39,13 +121,12 @@ function loadParentCategory(){
                 cart_action.textContent = 'View';
                 addToCartIcon.appendChild(cart_action);
 
+                productBox.appendChild(cat_ID);
                 productBox.appendChild(productTitle);
                 productBox.appendChild(productPrice);
                 productBox.appendChild(addToCartIcon);
-                // shop_content.appendChild(productBox);
-
-            });
-
+                shop_content.appendChild(productBox);
+            }
             // Get the button and the overlay element
             var cat_view_btn = document.getElementsByClassName('cat-view');
 
@@ -54,45 +135,8 @@ function loadParentCategory(){
                 var button = cat_view_btn[i];
                 button.addEventListener("click", viewCategory);
             }
-
-            if(searchQuery.length === 0){
-                shop_content.innerHTML = "What are you looking for?";
-
-            } else {
-                // Filter the list of products based on the search term
-                var filteredProducts = data.filter(function (product) {
-                    // return product.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 || product.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
-                    return product.name.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1;
-                });
-
-
-
-                // If there are no search results, display a message
-                if (filteredProducts.length === 0) {
-                    shop_content.innerHTML = "No results found.";
-                }
-                else {
-                    for (var i = 0; i < filteredProducts.length; i++) {
-                        var product = filteredProducts[i];
-                        shop_content.innerHTML += `<div class="cat-product-box"> <h2 class="cat-product-title">${product.name}</h2> <span class="cat-description">${product.description}</span> <i class="bx bx-expand cat-view"><span class="btn_action">View Details</span>  </i></div>`;
-                    }
-                    // Get the button and the overlay element
-                    var cat_view_btn = document.getElementsByClassName('cat-view');
-
-                    console.log(cat_view_btn);
-                    for (var i = 0; i < cat_view_btn.length; i++) {
-                        var button = cat_view_btn[i];
-                        button.addEventListener("click", viewCategory);
-                    }
-                }
-            }
-
-            // ready();
-
         }
-    };
-    data_xhr.open('GET', 'ajaxResponse/all_charges_json.php', true);
-    data_xhr.send();
+    }
 }
 
 function viewCategory(){
