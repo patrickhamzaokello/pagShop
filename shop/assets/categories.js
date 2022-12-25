@@ -1,7 +1,7 @@
 var search_base_data;
 var shop_content = document.getElementById('results');
 var looking_for = "What are you looking for?";
-var data_loading = "Loading...";
+var data_loading = "<div class='loading'>Loading...</div>";
 var data_not_found = "No Result Found";
 
 shop_content.innerHTML = looking_for;
@@ -146,9 +146,13 @@ function viewCategory(event){
     var cat_description = cat_buttonParent.getElementsByClassName("cat-description")[0].innerHTML;
 
 
+
     // Get the overlay content element
     var card_heading = document.getElementById('card_heading');
     var overlayResult = document.getElementById('overlayResult');
+
+    overlayResult.innerHTML = data_loading;
+
     // Get the product ID
     // Make the AJAX call
     var xhr = new XMLHttpRequest();

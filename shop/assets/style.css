@@ -135,8 +135,14 @@ header {
     margin-top: 1rem;
 }
 
-.cat_type_id{
+.cat_type_id {
     display: none;
+}
+
+.loading {
+    text-align: center;
+    margin: 0;
+    font-size: 1.1rem;
 }
 
 .cart-img {
@@ -373,8 +379,7 @@ header {
 }
 
 
-
-.btn_action{
+.btn_action {
     padding: 0 0.2rem;
     font-size: 1.0rem;
 }

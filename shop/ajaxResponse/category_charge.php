@@ -1,25 +1,12 @@
 <?php
+include_once "config.php";
 
-// Connect to the MySQL database
-$host = 'localhost';
-//$user = 'root';
-$user = 'rgxszumy_pagshop';
-//$password = '';
-$password = 'Ici?6BhL+0rv';
-$dbname = 'rgxszumy_hospital_pagmh';
-$conn = mysqli_connect($host, $user, $password, $dbname);
-
-// Check if the connection was successful
-if (!$conn) {
-    http_response_code(500);
-    exit;
-}
 
 // Check if the ID was provided in the query string
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Build the SQL query
-$sql = 'SELECT * FROM charges';
+$sql = 'SELECT * FROM chargess';
 if ($id) {
     $sql .= ' WHERE charge_category_id = ' . $id;
 }
