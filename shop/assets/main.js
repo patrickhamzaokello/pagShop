@@ -41,6 +41,50 @@ function ready() {
 
 }
 
+function getCartItemsList() {
+    // Get a reference to the cart-content element
+    const cartContent = document.querySelector('.cart-content');
+
+// Get all cart-box elements within the cart-content element
+    const cartBoxes = cartContent.querySelectorAll('.cart-box');
+
+    let products = []; // Initialize the products array
+
+// Loop through the cart-box elements
+    cartBoxes.forEach(cartBox => {
+        // Get the cart-product-title element
+        const cartProductTitle = cartBox.querySelector('.cart-product-title');
+
+        // Get the cart-price element
+        const cartPrice = cartBox.querySelector('.cart-price');
+
+        // Get the cart-quantity element
+        const cartQuantity = cartBox.querySelector('.cart-quantity');
+
+        // Get the cart-id element
+        const catTypeId = cartBox.querySelector('.cat_type_id');
+
+        // Get the values of the elements
+        const title = cartProductTitle.textContent;
+        const price = parseFloat(cartPrice.textContent.replace(/[^\d.-]/g, ''));
+        const quantity = parseInt(cartQuantity.value);
+        const id = parseInt(catTypeId.value);
+
+        // Create a new object with the values
+        const product = {
+            id: id,
+            title: title,
+            price: price,
+            quantity: quantity
+        };
+
+        // Add the object to the products array
+        products.push(product);
+    });
+
+    return products;
+}
+
 function buyButtonClicked() {
     // Get a reference to the select element
     const select = document.querySelector('#mySelect');
@@ -55,11 +99,16 @@ function buyButtonClicked() {
         const text = selectedOption.text;
 
 
-        // Create an object with the value and text of the selected option
+
+        // Create a new object with the products array and user ID and username
         const data = {
-            value: value,
-            text: text
+            user_id: value,
+            username: text,
+            products: getCartItemsList()
+
         };
+
+        console.log(data);
 
 
         // Make an AJAX request to the PHP script
@@ -113,12 +162,13 @@ function addCartClicked(event) {
     var shopProducts = button.parentElement;
     var title = shopProducts.getElementsByClassName("product-title")[0].innerText;
     var price = shopProducts.getElementsByClassName("price")[0].innerText;
+    var productId = shopProducts.getElementsByClassName("cat_type_id")[0].value;
 
-    addProductToCart(title, price);
+    addProductToCart(title, price,productId);
     updatetotal();
 }
 
-function addProductToCart(title, price) {
+function addProductToCart(title, price,productId) {
     var cartShopBox = document.createElement("div");
     cartShopBox.classList.add("cart-box");
     var cartItems = document.getElementsByClassName("cart-content")[0];
@@ -142,6 +192,11 @@ function addProductToCart(title, price) {
     priceDiv.setAttribute('class', 'cart-price');
     priceDiv.textContent = price;
 
+    const cat_ID = document.createElement('input');
+    cat_ID.setAttribute('type', 'number');
+    cat_ID.setAttribute('value', productId);
+    cat_ID.setAttribute('class', 'cat_type_id');
+
     const quantityInput = document.createElement('input');
     quantityInput.setAttribute('type', 'number');
     quantityInput.setAttribute('value', '1');
@@ -150,6 +205,7 @@ function addProductToCart(title, price) {
     const trashIcon = document.createElement('i');
     trashIcon.setAttribute('class', 'bx bxs-trash-alt cart-remove');
 
+    detailBox.appendChild(cat_ID);
     detailBox.appendChild(titleDiv);
     detailBox.appendChild(priceDiv);
     detailBox.appendChild(quantityInput);

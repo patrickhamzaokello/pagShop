@@ -186,6 +186,10 @@ function viewCategory(event){
                     const productTitle = document.createElement('h2');
                     productTitle.setAttribute('class', 'product-title');
                     productTitle.textContent = product.name;
+                    const cat_ID = document.createElement('input');
+                    cat_ID.setAttribute('type', 'number');
+                    cat_ID.setAttribute('value', product.id);
+                    cat_ID.setAttribute('class', 'cat_type_id');
                     const productPrice = document.createElement('span');
                     productPrice.setAttribute('class', 'price');
                     productPrice.textContent = product.standard_charge + ' UGX';
@@ -196,6 +200,7 @@ function viewCategory(event){
                     cart_action.textContent = 'Add to Cart';
                     // addToCartIcon.appendChild(cart_action);
 
+                    productBox.appendChild(cat_ID);
                     productBox.appendChild(productTitle);
                     productBox.appendChild(productPrice);
                     productBox.appendChild(addToCartIcon);

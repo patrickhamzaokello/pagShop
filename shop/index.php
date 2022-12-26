@@ -80,7 +80,6 @@
 
 <script src="assets/categories.js"></script>
 <script src="assets/main.js"></script>
-<script src="../node_modules/jspdf/dist/jspdf.umd.min.js"></script
 
 </body>
 </html>

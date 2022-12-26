@@ -1,28 +1,23 @@
 <?php
-$conn ="";
-// Connect to the database
-include_once "config.php";
-
 // Decode the data object from the request body
 $data = json_decode(file_get_contents('php://input'), true);
 
+// Connect to the database
+$db = new mysqli('host', 'username', 'password', 'database');
 
-// Get the products from the data object
-$products = $data['products'];
-
-// Check if the products array is empty or null
-if (empty($products)) {
-    die('No Medical Charges to process');
+// Check for errors
+if ($db->connect_error) {
+    die('Connection failed: ' . $db->connect_error);
 }
 
 // Get the user ID and username from the data object
-$userId = $data['user_id'];
+$userId = $data['userId'];
 $username = $data['username'];
 // Generate a unique order ID
 $orderId = 'pagpos' . uniqid();
 
 // Insert the user into the usertable
-$stmt = $conn->prepare('INSERT INTO medical_charge (user_id, order_id) VALUES (?, ?)');
+$stmt = $db->prepare('INSERT INTO medical_charge (user_id, order_id) VALUES (?, ?)');
 $stmt->bind_param('is', $userId, $orderId);
 $stmt->execute();
 
@@ -34,13 +29,16 @@ if ($stmt->error) {
 // Close the statement
 $stmt->close();
 
+// Get the products from the data object
+$products = $data['products'];
+
 // Loop through the products
 foreach ($products as $product) {
     // Insert the product into the products table
-    $stmt = $conn->prepare('INSERT INTO medical_charge_details (medical_charge_id,charge_id, price, quantity) VALUES (?,?, ?, ?)');
-    $stmt->bind_param('siii',$orderId, $product['id'], $product['price'], $product['quantity']);
+    $stmt = $db->prepare('INSERT INTO medical_charge_details (medical_charge_id,title, price, quantity) VALUES (?,?, ?, ?)');
+    $stmt->bind_param('ssii',$orderId, $product['title'], $product['price'], $product['quantity']);
     $stmt->execute();
-
+    
     // Check for errors
     if ($stmt->error) {
         die('Error: ' . $stmt->error);
@@ -52,4 +50,3 @@ foreach ($products as $product) {
 
 // Return a success message to the JavaScript code
 echo 'Data added to database';
-
