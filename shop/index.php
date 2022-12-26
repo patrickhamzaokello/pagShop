@@ -36,9 +36,8 @@
             </div>
 
             <form>
-                <label for="mySelect">Choose an patient:</label><br>
+                <label class="select_label" for="mySelect">Choose an patient:</label><br>
                 <select id="mySelect">
-                    <option value="">-- Choose an option --</option>
                 </select>
             </form>
 

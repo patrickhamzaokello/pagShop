@@ -249,14 +249,22 @@ function updatetotal() {
 }
 
 function get_users() {
+    // Get a reference to the select element
+    const select = document.querySelector('#mySelect');
+    select.innerHTML = data_loading;
     // Make an AJAX request to the PHP file
     fetch('ajaxResponse/get_all_patients.php')
         .then(response => response.json()) // Parse the response as JSON
         .then(data => {
-            // Get a reference to the select element
-            const select = document.querySelector('#mySelect');
-
+            select.innerHTML = "";
             // Loop through the data array
+            const option_default = document.createElement('option');
+            // Set the value and text of the option based on the object properties
+            option_default.value = "";
+            option_default.text = "-- Choose a Patient --";
+            // Add the option to the select element
+            select.add(option_default);
+
             data.forEach(item => {
                 // Create a new option element
                 const option = document.createElement('option');

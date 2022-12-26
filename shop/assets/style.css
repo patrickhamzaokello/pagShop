@@ -173,6 +173,10 @@ header {
     outline-color: var(--main-color);
     font-size: 1rem;
 }
+.select_label{
+    font-size: 1rem;
+    font-weight: 600;
+}
 
 .number_count {
     font-size: 10px;
