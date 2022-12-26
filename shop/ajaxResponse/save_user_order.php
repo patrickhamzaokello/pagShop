@@ -79,7 +79,7 @@ $pdf->SetFont('helvetica', '', 12);
 // Add the heading
 // Add the style element and heading
 $heading = '<style>
-            h1,h5 {
+            h1,h5,p {
                 text-align: center;
                 margin: 0;
                 margin-bottom: 20px;
@@ -91,13 +91,23 @@ $heading = '<style>
           ';
 $pdf->WriteHTML($heading,true, false, true, false, '');
 
+// Get the current date and time
+$date = date('jS F Y');
+$time = date('h:i:s A');
+
+// Add the date and time to the head of the document
+$data = '<p style="text-align: center">Date: ' . $date . ', Time: ' . $time . '</p>
+          <p></p>';
+$pdf->WriteHTML($data, true, false, true, false, '');
+
 // Calculate the totals for each product
 $totals = array_map(function ($product) {
     return $product['price'] * $product['quantity'];
 }, $products);
 
 // Calculate the overall total
-$total = array_sum($totals);
+$total = number_format(array_sum($totals));
+
 
 
 // Create an HTML table with the product information
@@ -119,12 +129,12 @@ margin-top: 1rem;
 
 // Add a row for each product
 foreach ($products as $i => $product) {
-    $html .= '<tr style="border-color: #666666">
+    $html .= '<tr style="font-size: 10px; border-color: #666666">
                 <td>' . $i + 1 . '</td>
                 <td>' . $product['title'] . '</td>
                 <td>' . $product['quantity'] . '</td>
-                <td>' . $product['price'] . '</td>
-                <td>' . $totals[$i] . '</td>
+                <td>' . number_format($product['price']). '</td>
+                <td>' . number_format($totals[$i]) . '</td>
               </tr>';
 }
 
