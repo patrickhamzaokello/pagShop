@@ -1,8 +1,8 @@
 <?php
 // Connect to the MySQL database
 $host = 'localhost';
-$user = 'root';
-$password = '';
+$user = 'rgxszumy_pagshop';
+$password = 'wZ0fx9uWJ[@G';
 $dbname = 'rgxszumy_hospital_pagmh';
 
 $conn = new mysqli($host, $user, $password, $dbname);
