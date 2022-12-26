@@ -251,7 +251,7 @@ function updatetotal() {
 function get_users() {
     // Get a reference to the select element
     const select = document.querySelector('#mySelect');
-    select.innerHTML = data_loading;
+    select.innerHTML = "<option value=''>--Loading--</option>";
     // Make an AJAX request to the PHP file
     fetch('ajaxResponse/get_all_patients.php')
         .then(response => response.json()) // Parse the response as JSON
