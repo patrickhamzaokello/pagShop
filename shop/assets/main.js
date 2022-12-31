@@ -89,6 +89,16 @@ function buyButtonClicked() {
     // Get a reference to the select element
     const select = document.querySelector('#mySelect');
 
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    const formattedToday = dd + '/' + mm + '/' + yyyy;
+
     // Check if an option has been selected
     if (select.value !== "") {
         // Get the selected option
@@ -123,8 +133,8 @@ function buyButtonClicked() {
             .then(result => {
                 // Check if the result is a success message
                 if (result === 'Data added to database') {
-                    console.log('Data added successfully');
-                    alert(result+ ' - now print pdf');
+                    const newMessage = 'Record Saved successfully - ';
+                    alert(newMessage + formattedToday);
                     var cartContent = document.getElementsByClassName('cart-content')[0];
                     while (cartContent.hasChildNodes()) {
                         cartContent.removeChild(cartContent.firstChild)
@@ -137,7 +147,7 @@ function buyButtonClicked() {
                 }
             }); // Log the result to the console
     } else {
-        alert('No User selected');
+        alert('Specify the  Patient from the drop down');
 
     }
 
