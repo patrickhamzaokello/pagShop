@@ -185,10 +185,46 @@ header {
     color: #fff;
 }
 
+.home_action_btn {
+    border: 1px solid #e91e63;
+    padding: 12px 20px;
+    border-radius: 3px;
+    color: #e91e63;
+    transition: 0.3s;
+}
+
+.home_action_btn:hover {
+    background: #e91e63;
+    color: #fff;
+}
+
+.action_btn_group {
+    margin: 3rem 0;
+}
 .cart-content {
     height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.table_hd{
+    padding: 10px;
+}
+
+.table_right {
+    text-align: right;
+}
+
+
+.table_reciept{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header{
+    font-size: 1rem;
+    background: #e0e7ff;
+    padding: 20px 2px;
 }
 
 
