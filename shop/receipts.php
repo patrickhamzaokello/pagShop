@@ -30,6 +30,10 @@
         </div>
     </div>
 
+    <div class="action_btn_group">
+        <a class="home_action_btn" href="index.php">Back to Billing</a>
+    </div>
+
     <!-- Container element to hold the search results -->
     <!-- content -->
     <div id="results" class="shop-content"></div>

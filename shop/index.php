@@ -14,7 +14,7 @@
 <body>
 <header>
     <div class="nav container">
-        <a href="#" class="logo">PAG MISSION HOSPITAL</a>
+        <a href="index.php" class="logo">PAG MISSION HOSPITAL</a>
 
         <i class="bx bx-shopping-bag" id="cart-icon">
             <div class="circle_count">
@@ -42,7 +42,7 @@
                 </select>
             </form>
 
-            <button type="button" class="btn-buy">Save & Print</button>
+            <button type="button" class="btn-buy">Save</button>
 
             <i class="bx bx-x" id="close-cart"></i>
         </div>
