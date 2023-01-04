@@ -159,6 +159,11 @@ function viewCategory(event) {
     overlayResult.innerHTML = data_loading;
     card_heading.innerHTML = "";
 
+    // Create a formatter for the overall total
+    var formatter = new Intl.NumberFormat('en-UG', {
+        style: 'currency',
+        currency: 'UGX'
+    });
 
     // Get the product ID
     // Make the AJAX call
@@ -182,11 +187,34 @@ function viewCategory(event) {
             mainBox.appendChild(mainDescription);
             card_heading.appendChild(mainBox);
 
+            // create table head
+            const tablehead_row  = document.createElement('tr');
+            tablehead_row.setAttribute('class', 'table-header');
+            const table_hd_item  = document.createElement('th');
+            table_hd_item.setAttribute('class', 'table_hd');
+            table_hd_item.textContent = "Item";
+            const table_hd_quantity  = document.createElement('th');
+            table_hd_quantity.setAttribute('class', 'table_hd');
+            table_hd_quantity.textContent = "Quantity";
+            const table_hd_price  = document.createElement('th');
+            table_hd_price.setAttribute('class', 'table_hd');
+            table_hd_price.textContent = "Price";
+            const table_hd_total  = document.createElement('th');
+            table_hd_total.setAttribute('class', 'table_hd');
+            table_hd_total.textContent = "Total";
+
 
             if (data.length === 0) {
                 overlayResult.innerHTML = 'No Records Found';
             } else {
                 overlayResult.innerHTML = '';
+                order_table.innerHTML = '';
+                tablehead_row.appendChild(table_hd_item);
+                tablehead_row.appendChild(table_hd_quantity);
+                tablehead_row.appendChild(table_hd_price);
+                tablehead_row.appendChild(table_hd_total);
+
+                order_table.appendChild(tablehead_row);
                 // Iterate through the products and add them to the overlay content
                 data.forEach(function (product) {
                                         const tablerow = document.createElement('tr');
@@ -202,12 +230,12 @@ function viewCategory(event) {
                     const tableda3 = document.createElement("td");
                     tableda3.setAttribute('class', 'product-box table_right');
 
-                    tableda3.textContent = product.price;
+                    tableda3.textContent = formatter.format(product.price);
 
                     const tableda4 = document.createElement("td");
                     tableda4.setAttribute('class', 'product-box table_right');
 
-                    tableda4.textContent = product.quantity * product.price;
+                    tableda4.textContent = formatter.format(product.quantity * product.price);
 
                     tablerow.appendChild(tableda1);
                     tablerow.appendChild(tableda2);
@@ -218,6 +246,36 @@ function viewCategory(event) {
 
 
                 });
+
+                // Calculate the overall total
+                var overallTotal = data.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+                // create table head
+                const total_data_row  = document.createElement('tr');
+                total_data_row.setAttribute('class', 'table-total');
+                // total lable
+                const total_data_name  = document.createElement('th');
+                total_data_name.setAttribute('class', 'product-box table_right totalbold');
+                total_data_name.textContent = "Grand Total";
+                // total quantity
+                const total_quantity  = document.createElement('th');
+                total_quantity.setAttribute('class', 'product-box table_right totalbold');
+                // total unit price
+                const total_unit_price  = document.createElement('th');
+                total_unit_price.setAttribute('class', 'product-box table_right totalbold');
+                //overall total value
+                const total_overall  = document.createElement('th');
+                total_overall.setAttribute('class', 'product-box table_right totalbold');
+                total_overall.textContent = formatter.format(overallTotal);
+
+                total_data_row.appendChild(total_data_name);
+                total_data_row.appendChild(total_quantity);
+                total_data_row.appendChild(total_unit_price);
+                total_data_row.appendChild(total_overall);
+
+                order_table.appendChild(total_data_row)
+
+
             }
 
 

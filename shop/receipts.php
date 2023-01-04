@@ -14,12 +14,12 @@
 <body>
 <header>
     <div class="nav container">
-        <a href="#" class="logo">PAG MISSION HOSPITAL Receipts</a>
+        <a href="index.php" class="logo">PAG MISSION HOSPITAL</a>
     </div>
 </header>
 
 <section class="shop container">
-    <h2 class="section-title">All Receipts</h2>
+    <h2 class="section-title">All Patient Receipts</h2>
 
     <div class="searchbox">
         <div class="search-box">
@@ -37,20 +37,16 @@
     <div id="overlay">
         <div id="overlayContent">
             <i class="bx bx-x" id="close-overlay"></i>
+            <button class="print_btn" onclick="window.print()">Print Receipt</button>
+
             <div id="card_heading">
 
             </div>
-            <button onclick="window.print()">Print Receipt</button>
             <div id="overlayResult">
 
             </div>
             <table id="receipt" class="table_reciept">
-                <tr class="table-header">
-                    <th class="table_hd">Item</th>
-                    <th class="table_hd">Quantity</th>
-                    <th class="table_hd">Price</th>
-                    <th class="table_hd">Total</th>
-                </tr>
+
             </table>
         </div>
     </div>
