@@ -162,18 +162,19 @@ header {
     border-radius: 50%;
     background: red;
     transform: scale(calc(27px / (length(text()) + 2)));
-    transform: scale(1 + (length(text()) - 1) * 0.5);
+    transform: scale(1 + (length(text()) -1) *0.5);
 
 }
 
-#mySelect{
+#mySelect {
     width: 100%;
     padding: 12px 20px;
     border: 1px solid var(--text-color);
     outline-color: var(--main-color);
     font-size: 1rem;
 }
-.select_label{
+
+.select_label {
     font-size: 1rem;
     font-weight: 600;
 }
@@ -201,13 +202,14 @@ header {
 .action_btn_group {
     margin: 3rem 0;
 }
+
 .cart-content {
     height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-.table_hd{
+.table_hd {
     padding: 10px;
     text-align: left;
 }
@@ -217,12 +219,12 @@ header {
 }
 
 
-.table_reciept{
+.table_reciept {
     width: 100%;
     border-collapse: collapse;
 }
 
-.table-header{
+.table-header {
     font-size: 1rem;
     background: #e0e7ff;
     padding: 20px 2px;
@@ -273,7 +275,7 @@ header {
     margin-left: 0.5rem;
 }
 
-.print_btn{
+.print_btn {
     padding: 12px 20px;
     background: #4caf50;
     border: #4caf50;
@@ -282,6 +284,45 @@ header {
     color: white;
     transition: 0.3s;
     margin: 1rem 0;
+}
+
+.navigation:hover {
+    border-bottom: 2px solid #0089ff;
+    transition: 0.5s;
+    color: #0055bf;
+}
+
+.navigation {
+    color: #a900ff
+}
+
+.navigation_active{
+    border-bottom: 2px solid #0089ff;
+    transition: 0.5s;
+    color: #0055bf;
+}
+
+.labeltext {
+    color: #000;
+    display: block;
+}
+
+.inputbox {
+    padding: 18px 16px;
+    width: 100%;
+}
+
+.addPatient {
+    width: 100%;
+    padding: 10px 20px;
+    background: #0b5abd;
+    border: 1px solid cyan;
+    color: white;
+}
+
+.PatientContainer{
+    max-width: 526px;
+    margin: 0 auto;
 }
 
 .print_btn:hover {

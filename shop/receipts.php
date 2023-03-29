@@ -15,6 +15,10 @@
 <header>
     <div class="nav container">
         <a href="index.php" class="logo">PAG MISSION HOSPITAL</a>
+        <a href="index.php" class="navigation ">Home</a>
+        <a href="receipts.php" class="navigation navigation_active">Admin</a>
+        <a href="newPatient.php" class="navigation">New Patient</a>
+        <a href="logout.php" class="navigation">Logout</a>
     </div>
 </header>
 
@@ -30,9 +34,7 @@
         </div>
     </div>
 
-    <div class="action_btn_group">
-        <a class="home_action_btn" href="index.php">Back to Billing</a>
-    </div>
+
 
     <!-- Container element to hold the search results -->
     <!-- content -->

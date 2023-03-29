@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+  background: #0d314a;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat";
+}
+
+.inputbox {
+  width: 100%;
+  color: #000000 !important;
+  background: #ebebeb !important;
+  border: none;
+  border: 1px solid #ebebeb;
+  box-sizing: border-box;
+  padding: 18px 20px;
+  margin: 5px 0;
+}
+
+.formtitle{
+   margin-bottom: 1em;
+}
+
+.zodongologinlogo{
+  width: 100%;
+}
+
+.labeltext {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: smaller;
+}
+
+.inputsubmit {
+  padding: 15px 20px;
+  border-radius: 50px;
+  width: 100%;
+  background: #0089ff;
+  border: 1px solid #00a1ff;
+  color: black;
+  margin-top: 1em;
+}
+
+.newtopwf {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 18px;
+  padding: 0;
+  margin: 0.5em 0;
+  color: #F2CB05;
+}
+
+.newsignup {
+  color: #6F0E9D;
+}
+
+.logintext {
+  font-size: 23px;
+  text-align: center;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  color: #5af9f2;
+}
+
+.registerlogin {
+  padding: 9px;
+  margin: 1em 0;
+  width: 100%;
+  border: 2px solid black;
+  background: #050914;
+  color: white;
+}
+
+.remberme {
+  font-size: 13px;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+ 
+}
+
+.cardcomponent {
+   display: grid;
+   place-content: center;
+   height: 100vh;
+   position: relative;
+}
+
+.loginpagesite {
+  margin: 0 auto;
+  place-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  display: grid;
+  margin-top: -6rem;
+  max-width: 416px;
+}
+
+.errotext {
+  font-size:18px; 
+  color:#ffffff; 
+}
+
+
+.errorinnerdiv {
+  background: #3e1717;
+  width: 350px;
+  padding: 2em;
+  border-radius: 10px;
+  border: 1px solid #ff0000;
+  text-align: center;
+}
+
+.erroshow{
+  position: absolute;
+  display: grid;
+  place-content: center;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  z-index: 5001;
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}

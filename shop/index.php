@@ -1,3 +1,11 @@
+
+<?php
+
+//session_start();
+require('session.php');
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +23,10 @@
 <header>
     <div class="nav container">
         <a href="index.php" class="logo">PAG MISSION HOSPITAL</a>
+        <a href="index.php" class="navigation navigation_active">Home</a>
+        <a href="receipts.php" class="navigation">Admin</a>
+        <a href="newPatient.php" class="navigation">New Patient</a>
+        <a href="logout.php" class="navigation">Logout</a>
 
         <i class="bx bx-shopping-bag" id="cart-icon">
             <div class="circle_count">
@@ -50,6 +62,7 @@
 </header>
 
 <section class="shop container">
+    <h1 class="section-title">Welcome, <?=$login_session?>!</h1>
     <h2 class="section-title">PAG Mission Hospital Billing System</h2>
 
     <div class="searchbox">
@@ -61,9 +74,6 @@
         </div>
     </div>
 
-    <div class="action_btn_group">
-        <a class="home_action_btn" href="receipts.php" target="_blank">All Receipts</a>
-    </div>
 
     <!-- Container element to hold the search results -->
     <!-- content -->
