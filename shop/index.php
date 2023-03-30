@@ -1,8 +1,8 @@
 
 <?php
-
-require('session.php');
-?>
+//
+//require('session.php');
+//?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +59,7 @@ require('session.php');
 </header>
 
 <section class="shop container">
-    <h1 class="section-title">Welcome, <?=$login_session?>!</h1>
+<!--    <h1 class="section-title">Welcome, --><?//=$login_session?><!--!</h1>-->
     <h2 class="section-title">PAG Mission Hospital Billing System</h2>
 
     <div class="searchbox">
