@@ -3,22 +3,6 @@ session_start();
 $conn = null;
 
 include("ajaxResponse/config.php");
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>PAG MISSION HOSPITAL</title>
-    <link rel="stylesheet" href="assets/style.css"/>
-    <link
-            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-            rel="stylesheet"
-    />
-</head>
-
-<?php
 // Define the database connection details
 // Check the connection
 if ($conn == null) {
@@ -119,7 +103,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo $nameErr . $contactErr . $emailErr . $dobErr . $genderErr . $addressErr . $gnameErr;
 
     }
-} ?>
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PAG MISSION HOSPITAL</title>
+    <link rel="stylesheet" href="assets/style.css"/>
+    <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+    />
+</head>
+
 <body>
 <header>
     <div class="nav container">
