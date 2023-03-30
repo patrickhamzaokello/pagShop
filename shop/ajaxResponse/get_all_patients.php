@@ -6,7 +6,7 @@ include_once "config.php";
 
 
 // Build the SQL query
-$sql = 'SELECT * FROM `patients`';
+$sql = 'SELECT * FROM `patients` ORDER BY `patients`.`id` DESC';
 
 // Execute the query
 $result = mysqli_query($conn, $sql);
