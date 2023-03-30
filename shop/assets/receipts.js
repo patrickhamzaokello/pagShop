@@ -195,7 +195,7 @@ function viewCategory(event) {
             table_hd_item.textContent = "Item";
             const table_hd_quantity  = document.createElement('th');
             table_hd_quantity.setAttribute('class', 'table_hd');
-            table_hd_quantity.textContent = "Quantity";
+            table_hd_quantity.textContent = "Qtn";
             const table_hd_price  = document.createElement('th');
             table_hd_price.setAttribute('class', 'table_hd');
             table_hd_price.textContent = "Price";
