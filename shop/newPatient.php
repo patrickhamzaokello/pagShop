@@ -93,7 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             echo "New patient record created successfully.";
             header("Location: index.php");
-            exit;
         } else {
             echo "Error: " . $stmt->error;
         }
