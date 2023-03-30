@@ -41,7 +41,7 @@ function loadParentCategory() {
                 productTitle.textContent = product.patient_name;
                 const order_info = document.createElement('p');
                 order_info.setAttribute('class', 'cat-description');
-                order_info.textContent = "Age: " + product.age + " Gender: " + product.gender + " Phone: " + product.mobileno + " Date: " + product.datecreated;
+                order_info.textContent = "ID#" + product.order_id + ", Gender: " + product.gender + ", Phone: " + product.mobileno + ", Date: " + product.datecreated;
                 const productPrice = document.createElement('span');
                 productPrice.setAttribute('class', 'order_info');
                 productPrice.textContent = product.address;
