@@ -4,7 +4,7 @@ $conn = null;
 
 include("ajaxResponse/config.php");
 if (!isset($_SESSION['login_user'])) {
-    header("Location: login.php");
+    header("Location: join.php");
     exit;
 } else {
     $user_check = $_SESSION['login_user'];
