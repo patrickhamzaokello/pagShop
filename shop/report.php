@@ -38,6 +38,20 @@
             font-size: 18px;
         }
 
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /*
         Max width before this PARTICULAR table gets nasty
         This query will take effect for any screen smaller than 760px
@@ -98,6 +112,7 @@
     <p>Select a date:</p>
     <input type="date" id="dateInput">
     <button onclick="getSalesReport()">Get Report</button>
+    <div id="loader" class="loader" style="display: none;"></div>
     <button onclick="window.print()">Print Report</button>
 
 </div>
@@ -119,10 +134,18 @@
 <script>
     function getSalesReport() {
         const date = document.getElementById("dateInput").value;
+        const loader = document.getElementById("loader");
+        loader.style.display = "block";
         fetch(`sales_report.php?date=${date}`)
             .then(response => response.json())
-            .then(data => displaySalesReport(data))
-            .catch(error => console.error(error));
+            .then(data => {
+                displaySalesReport(data);
+                loader.style.display = "none";
+            })
+            .catch(error => {
+                console.error(error);
+                loader.style.display = "none";
+            });
     }
 
     function displaySalesReport(data) {
