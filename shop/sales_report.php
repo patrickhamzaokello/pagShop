@@ -6,11 +6,12 @@ $date = $_GET['date'];
 // Connect to the database
 $host = 'localhost';
 $dbname = 'rgxszumy_hospital_pagmh';
-$username = 'root';
-$password = '';
+//$username = 'root';
+//$password = '';
+$username = 'rgxszumy_pagshop';
+$password = 'wZ0fx9uWJ[@G';
 
-//$user = 'rgxszumy_pagshop';
-//$password = 'wZ0fx9uWJ[@G';
+
 
 $dsn = "mysql:host=$host;dbname=$dbname";
 $options = [
