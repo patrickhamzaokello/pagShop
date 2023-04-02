@@ -19,7 +19,7 @@ if (empty($products)) {
 $userId = $data['user_id'];
 $username = $data['username'];
 // Generate a unique order ID
-$orderId = 'pag_mh' . uniqid();
+$orderId = 'pag_mh' . $userId;
 
 // Insert the user into the usertable
 $stmt = $conn->prepare('INSERT INTO medical_charge (user_id, order_id) VALUES (?, ?)');

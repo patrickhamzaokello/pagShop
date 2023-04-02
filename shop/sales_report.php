@@ -25,21 +25,7 @@ try {
 }
 
 // Prepare and execute the SQL query
-$sql = "SELECT
-            SUM(mcd.quantity * mcd.price) AS total_sales,
-            c.name AS item_name,
-            mcd.price AS unit_price,
-            SUM(mcd.quantity) AS num_items_sold
-        FROM
-            medical_charge mc
-            JOIN medical_charge_details mcd ON mc.order_id = mcd.medical_charge_id
-            JOIN charges c ON mcd.charge_id = c.id
-        WHERE
-            DATE(mc.datecreated) = :date
-        GROUP BY
-            mcd.charge_id,
-            c.name,
-            mcd.price";
+$sql = "SELECT SUM(mcd.quantity * mcd.price) AS total_sales, c.name AS item_name, mcd.price AS unit_price, COALESCE(t.num_items_sold, 0) AS num_items_sold FROM medical_charge mc JOIN medical_charge_details mcd ON mc.order_id = mcd.medical_charge_id JOIN charges c ON mcd.charge_id = c.id LEFT JOIN ( SELECT charge_id, SUM(quantity) AS num_items_sold FROM medical_charge_details WHERE DATE(date_created) = :date GROUP BY charge_id ) t ON c.id = t.charge_id WHERE DATE(mc.datecreated) = :date GROUP BY mcd.charge_id, c.name, mcd.price;";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['date' => $date]);
