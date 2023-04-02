@@ -125,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="nav container">
         <a href="index.php" class="logo">PAG MISSION HOSPITAL</a>
         <a href="index.php" class="navigation ">Home</a>
+        <a href="report.php" class="navigation">Report</a>
         <a href="receipts.php" class="navigation ">Receipts</a>
         <a href="newPatient.php" class="navigation navigation_active">New Patient</a>
         <a href="logout.php" class="navigation">Logout</a>
